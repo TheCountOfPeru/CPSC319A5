@@ -1,18 +1,44 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Assign5 {
-
+	/**
+	 * Adapted from https://stackoverflow.com/a/21974043
+	 * @param aString - The name of a text file.
+	 * @return The file extension if it exists, blank otherwise
+	 */
+	public static String getFileExtension(String aString) {
+	    try {
+	        return aString.substring(aString.lastIndexOf("."));
+	    } catch (Exception e) {
+	        return "";
+	    }
+	}
 	public static void main(String[] args) {
+		Scanner scanner;
 		//Command line argument verification 
 				/*
-				if(args.length != 4) {
-					System.out.println("Incorrect number of inputs. Quitting...");
+				if(args.length != 2) {
+					System.out.println("Incorrect number of inputs. I need a input and output file name Quitting...");
 					System.exit(-1);
 				}
-				if(!getFileExtension(args[0]).equals(".txt") || !getFileExtension(args[1]).equals(".txt") || !getFileExtension(args[2]).equals(".txt")
-						|| !getFileExtension(args[3]).equals(".txt") ) {
+				if(!getFileExtension(args[0]).equals(".txt") || !getFileExtension(args[1]).equals(".txt")) {
 					System.out.println("Unable to use files that are not text files. Check your file names. Quitting...");
 					System.exit(-1);
 				}*/
+		//Parse the input text file and add entries into a hash table
+		try {
+			scanner = new Scanner(new File(args[0]));
+			while(scanner.hasNextLine()) {
+				System.out.println(scanner.nextLine());
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error occured opening the input. Quitting...");
+			System.exit(-1);
+		}
+		
+		
 
 	}
 
