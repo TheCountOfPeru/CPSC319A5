@@ -15,6 +15,7 @@ public class Assign5 {
 	        return "";
 	    }
 	}
+	
 	public static void main(String[] args) {
 		Scanner scanner;
 		//Command line argument verification 
@@ -28,6 +29,7 @@ public class Assign5 {
 					System.exit(-1);
 				}*/
 		//Parse the input text file and add entries into a hash table
+		/*
 		try {
 			scanner = new Scanner(new File(args[0]));
 			while(scanner.hasNextLine()) {
@@ -37,6 +39,7 @@ public class Assign5 {
 			System.out.println("Error occured opening the input. Quitting...");
 			System.exit(-1);
 		}
+		*/
 		
 		
 

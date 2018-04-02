@@ -30,14 +30,28 @@ public class HashTable {
 		
 	}
 	/**
-	 * Returns the next prime number starting from n.
+	 * From https://gist.github.com/scottfrazer/2725727
+	 * Checks if n is a prime number. 
 	 * @param n
 	 * @return
 	 */
-	public int nextPrimeNum(int n) {
-		return 0;
-	}
-	
+	public static boolean isPrime(int n) {
+        for(int i=2; i<n; i++) {
+            if(n%i==0)return false;
+        }
+        return true;
+    }
+	/**
+	 * From https://gist.github.com/scottfrazer/2725727
+	 * Finds the next prime number from n
+	 * @param n
+	 * @return
+	 */
+    public static int nextPrime(int n) {
+        for(int i=n+1; true; i++) {
+            if(isPrime(i)==true) return i;
+        }
+    }
 	/**
 	 * Finds the next open position in a hash table
 	 */
