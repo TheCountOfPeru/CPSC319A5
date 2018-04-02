@@ -4,7 +4,7 @@ public class HashTable {
 	private Integer table[];
 	
 	public HashTable(int size) {
-		this.setSize(size);
+		this.setSize(nextPrime(size));
 		table = new Integer[size];
 	}
 
@@ -35,7 +35,7 @@ public class HashTable {
 	 * @param n
 	 * @return
 	 */
-	public static boolean isPrime(int n) {
+	public boolean isPrime(int n) {
         for(int i=2; i<n; i++) {
             if(n%i==0)return false;
         }
@@ -47,7 +47,7 @@ public class HashTable {
 	 * @param n
 	 * @return
 	 */
-    public static int nextPrime(int n) {
+    public int nextPrime(int n) {
         for(int i=n+1; true; i++) {
             if(isPrime(i)==true) return i;
         }
