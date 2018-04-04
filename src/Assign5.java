@@ -18,6 +18,7 @@ public class Assign5 {
 	
 	public static void main(String[] args) {
 		Scanner scanner;
+		HashTable table;
 		//Command line argument verification 
 				/*
 				if(args.length != 2) {
@@ -28,18 +29,25 @@ public class Assign5 {
 					System.out.println("Unable to use files that are not text files. Check your file names. Quitting...");
 					System.exit(-1);
 				}*/
+		table = new HashTable(10);		
 		//Parse the input text file and add entries into a hash table
-		/*
+		System.out.println(table.getSize());
 		try {
 			scanner = new Scanner(new File(args[0]));
-			while(scanner.hasNextLine()) {
-				System.out.println(scanner.nextLine());
+			for(int i = 0; i<20; i++) {
+				String temp = scanner.nextLine();
+				table.insert(temp);
+				System.out.println(temp);
 			}
+				
+			/*while(scanner.hasNextLine()) {
+				
+			}*/
 		} catch (FileNotFoundException e) {
 			System.out.println("Error occured opening the input. Quitting...");
 			System.exit(-1);
 		}
-		*/
+		
 		
 		
 
