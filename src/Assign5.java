@@ -29,9 +29,10 @@ public class Assign5 {
 					System.out.println("Unable to use files that are not text files. Check your file names. Quitting...");
 					System.exit(-1);
 				}*/
-		table = new HashTable(10);		
+		table = new HashTable(20);		
 		//Parse the input text file and add entries into a hash table
-		System.out.println(table.getSize());
+		table.PrintHashTable();
+		System.out.println();
 		try {
 			scanner = new Scanner(new File(args[0]));
 			for(int i = 0; i<20; i++) {
@@ -47,7 +48,7 @@ public class Assign5 {
 			System.out.println("Error occured opening the input. Quitting...");
 			System.exit(-1);
 		}
-		
+		table.PrintHashTable();
 		
 		
 

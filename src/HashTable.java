@@ -1,42 +1,48 @@
 import java.lang.Math;
 public class HashTable {
-	private Integer size;
+	private int size;
 	private String table[];
 	
-	public HashTable(int size) {
-		this.setSize(nextPrime(size));
-		table = new String[size];
+	public HashTable(int init) {
+		if(!isPrime(init))	
+			setSize(nextPrime(init));
+		else
+			setSize(init);
+		table = new String[getSize()];
+		System.out.println(table.length);
 	}
 
-	public Integer getSize() {
+	public int getSize() {
 		return size;
 	}
 
-	public void setSize(Integer size) {
+	public void setSize(int size) {
 		this.size = size;
 	}
 	public String getAt(int index) {
 		return table[index];
 	}
 	/**
-	 * The insertion function. Uses the hashfunction and normalizer and linearprob to attempt to insert a string
+	 * The insertion function.
 	 * @param line
 	 */
 	public void insert(String line) {
+		int linearp = 0;
 		int position = HashFunction(line); 		//Hash the string
-		//position = Normalizer(position);		//Normalize the index number
-		while(getAt(position) == null) { 	//Find an empty spot in hash table to put your string in
-			position = LinearProb(position);
+		System.out.print(position +" ");
+		while(getAt(position + linearp) != null) { 	//Find an empty spot in hash table to put your string in
+			linearp++;
+			if(position + linearp == table.length)
+				position = linearp = 0;
 		}
-		table[position] = line;
-		//System.out.print(position + " ");
+		table[position + linearp] = line;
 	}
 	public void PrintHashTable() {
-		for(int i = 0; i < getSize() - 1;i++)
+		for(int i = 0; i < getSize();i++)
 			System.out.print(getAt(i)+ " ");
 	}
 	/**
-	 * The hash function for this hash table class. Calculates a index in the table from a string.
+	 * The hash function for this hash table class that also normalizes the has results. Generates an index for a hash table.
 	 * From https://research.cs.vt.edu/AVresearch/hashing/strings.php
 	 * @param in
 	 */
