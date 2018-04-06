@@ -17,6 +17,7 @@ public class Assign5 {
 	    }
 	}
 	public static void main(String[] args) {
+		final int INPUT_NUM = 11344;
 		Scanner scanner;
 		PrintWriter pw;
 		HashTable table;
@@ -31,7 +32,7 @@ public class Assign5 {
 					System.exit(-1);
 				}*/
 		
-		table = new HashTable(11344);	//The input file from d2l has 11344 words	
+		table = new HashTable(INPUT_NUM);	//The input file from d2l has 11344 words	
 		//Parse the input text file and add entries into a hash table
 		//table.PrintHashTable();
 		//System.out.println();
@@ -51,7 +52,9 @@ public class Assign5 {
 		
 		try {
 			pw = new PrintWriter(args[1]);
-			table.PrintHashTable(pw);
+			//table.PrintHashTable(pw);
+			System.out.println(INPUT_NUM);
+			table.MeasureHashFunc(pw, INPUT_NUM);
 			pw.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error occured opening the ouput text file. Quitting...");

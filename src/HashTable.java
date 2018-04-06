@@ -10,7 +10,7 @@ public class HashTable {
 		else
 			setSize(init);
 		table = new String[getSize()];
-		System.out.println(table.length);
+		System.out.println(getSize());
 	}
 
 	public int getSize() {
@@ -82,6 +82,11 @@ public class HashTable {
 		if(position > getSize()-1)//if you reach the end of a table start over at the beginning
 			position = 0;
 		return position;
+	}
+	public void MeasureHashFunc(PrintWriter pw, int num_records) {
+		double loadfactor = (num_records/(double)getSize())*100;
+		System.out.println(loadfactor);
+		pw.println("Load factor = " + num_records + "/"+getSize() +" X 100 = "+ loadfactor);
 	}
 	/**
 	 * From https://gist.github.com/scottfrazer/2725727
