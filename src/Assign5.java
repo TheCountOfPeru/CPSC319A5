@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Assign5 {
@@ -15,9 +16,9 @@ public class Assign5 {
 	        return "";
 	    }
 	}
-	
 	public static void main(String[] args) {
 		Scanner scanner;
+		PrintWriter pw;
 		HashTable table;
 		//Command line argument verification 
 				/*
@@ -29,27 +30,33 @@ public class Assign5 {
 					System.out.println("Unable to use files that are not text files. Check your file names. Quitting...");
 					System.exit(-1);
 				}*/
-		table = new HashTable(20);		
+		
+		table = new HashTable(11344);	//The input file from d2l has 11344 words	
 		//Parse the input text file and add entries into a hash table
-		table.PrintHashTable();
-		System.out.println();
+		//table.PrintHashTable();
+		//System.out.println();
+		
 		try {
-			scanner = new Scanner(new File(args[0]));
-			for(int i = 0; i<20; i++) {
+			scanner = new Scanner(new File(args[0]));				
+			while(scanner.hasNextLine()) {
 				String temp = scanner.nextLine();
 				table.insert(temp);
-				System.out.println(temp);
+				//System.out.println(temp);
 			}
-				
-			/*while(scanner.hasNextLine()) {
-				
-			}*/
 		} catch (FileNotFoundException e) {
-			System.out.println("Error occured opening the input. Quitting...");
+			System.out.println("Error occured opening the input text file. Quitting...");
 			System.exit(-1);
 		}
-		table.PrintHashTable();
 		
+		
+		try {
+			pw = new PrintWriter(args[1]);
+			table.PrintHashTable(pw);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error occured opening the ouput text file. Quitting...");
+			System.exit(-1);
+		}
 		
 
 	}

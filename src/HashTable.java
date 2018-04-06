@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.lang.Math;
 public class HashTable {
 	private int size;
@@ -29,17 +30,17 @@ public class HashTable {
 	public void insert(String line) {
 		int linearp = 0;
 		int position = HashFunction(line); 		//Hash the string
-		System.out.print(position +" ");
-		while(getAt(position + linearp) != null) { 	//Find an empty spot in hash table to put your string in
+		//System.out.print(position +" ");
+		while(getAt(position + linearp) != null) { 	//Find an empty spot in hash table to put your string in, if necessary use linear probing to find an empty spot
 			linearp++;
 			if(position + linearp == table.length)
 				position = linearp = 0;
 		}
 		table[position + linearp] = line;
 	}
-	public void PrintHashTable() {
+	public void PrintHashTable(PrintWriter pw) {
 		for(int i = 0; i < getSize();i++)
-			System.out.print(getAt(i)+ " ");
+			pw.println(getAt(i)+ " ");
 	}
 	/**
 	 * The hash function for this hash table class that also normalizes the has results. Generates an index for a hash table.
