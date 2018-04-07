@@ -37,31 +37,34 @@ public class Assign5 {
 		//table.PrintHashTable();
 		//System.out.println();
 		
+		System.out.println("Scanning " + args[0] + " and attempting to insert input words into a Hash Table....");
 		try {
 			scanner = new Scanner(new File(args[0]));				
 			while(scanner.hasNextLine()) {
 				String temp = scanner.nextLine();
 				table.insert(temp);
-				//System.out.println(temp);
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Error occured opening the input text file. Quitting...");
 			System.exit(-1);
 		}
-		
-		
+		System.out.println("Hash Table created successfully.");
+		System.out.println("Calculating hash statistics....");
 		try {
+			scanner = new Scanner(new File(args[0]));
 			pw = new PrintWriter(args[1]);
 			//table.PrintHashTable(pw);
-			System.out.println(INPUT_NUM);
-			table.MeasureHashFunc(pw, INPUT_NUM);
+			//System.out.println(INPUT_NUM);
+			table.MeasureHashFunc(pw, scanner,INPUT_NUM);
 			pw.close();
+			scanner.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("Error occured opening the ouput text file. Quitting...");
+			System.out.println("Error occured opening the output or input text file. Quitting...");
 			System.exit(-1);
 		}
 		
-
+		System.out.println("Program successfully completed. Quitting...");
 	}
 
 }

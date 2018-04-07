@@ -1,1 +1,4 @@
-Load factor = 11344/11351 X 100 = 99.93833142454409
+Average number of reads per record = 58.798924541607896
+Load factor = 11344/11351 = 99.93833142454409%
+Hash efficiency = 1.7017608299663427%
+The longest chain found = 10179
