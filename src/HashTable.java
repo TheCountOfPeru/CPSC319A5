@@ -11,7 +11,6 @@ public class HashTable {
 		else
 			setSize(init);
 		table = new String[getSize()];
-		System.out.println(getSize());
 	}
 
 	public int getSize() {
@@ -46,6 +45,7 @@ public class HashTable {
 		int linearp = 0;
 		int chain = 1;
 		int position = HashFunction(line); 		//Hash the string
+		//System.out.println(position);
 		while(!getAt(position + linearp).equals(line)) { 	
 			linearp++;
 			chain++;
@@ -55,45 +55,29 @@ public class HashTable {
 		return chain;
 	}
 	/**
-	 * The hash function for this hash table class that also normalizes the has results. Generates an index for a hash table.
-	 * From https://research.cs.vt.edu/AVresearch/hashing/strings.php
+	 * The hash function for this hash table class that also normalizes the hash results. It uses a folding algorithm.
+	 * Adapted from https://research.cs.vt.edu/AVresearch/hashing/strings.php
 	 * @param in
 	 */
 	public int HashFunction(String s) {
 		int intLength = s.length() / 4;
 	     long sum = 0;
-	     for (int j = 0; j < intLength; j++) {
-	       char c[] = s.substring(j * 4, (j * 4) + 4).toCharArray();
+	     for (int j = 0; j < intLength; j++) { //summing 4 chars at a time, with each index with a different weight
+	       char c[] = s.substring(j * 4, (j * 4) + 4).toCharArray(); //Put four chars into a temp char array for summing
 	       long mult = 1;
-	       for (int k = 0; k < c.length; k++) {
-		 sum += c[k] * mult;
-		 mult *= 256;
+	       for (int k = 0; k < c.length; k++) {						//For each char of the array multiply it by a variable number and sum them together
+	    	   sum += c[k] * mult;									//Sum all the sums for each substring together
+	    	   mult *= 1024;
 	       }
 	     }
-
-	     char c[] = s.substring(intLength * 4).toCharArray();
-	     long mult = 1;
+	     
+	     char c[] = s.substring(intLength * 4).toCharArray();		//Finally add to the previous sum all the characters of the string
+	     long mult = 1;												//Each char of the string will have different weight
 	     for (int k = 0; k < c.length; k++) {
 	       sum += c[k] * mult;
-	       mult *= 256;
+	       mult *= 1024;
 	     }
-	     return (int) (Math.abs(sum) % getSize()); //Normalize the result
-	}
-	/**
-	 * The normalizer function for this hash table class. Makes sure HashFunction output is within the bounds of the table.
-	 * @param in
-	 */
-	public int Normalizer(int k) {
-		return k % getSize();
-	}
-	/**
-	 * Finds the next open position in a hash table
-	 */
-	public int LinearProb(int position) {
-		position++;
-		if(position > getSize()-1)//if you reach the end of a table start over at the beginning
-			position = 0;
-		return position;
+	     return (int) (Math.abs(sum) % getSize()); //Normalize the result and return it.
 	}
 	/**
 	 * Calculates the load factor, 

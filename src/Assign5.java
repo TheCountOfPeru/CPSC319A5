@@ -17,7 +17,8 @@ public class Assign5 {
 	    }
 	}
 	public static void main(String[] args) {
-		final int INPUT_NUM = 11344;
+		final int TABLE_SIZE = 16205;
+		final int INPUT_SIZE = 11344;
 		Scanner scanner;
 		PrintWriter pw;
 		HashTable table;
@@ -32,7 +33,7 @@ public class Assign5 {
 					System.exit(-1);
 				}*/
 		
-		table = new HashTable(INPUT_NUM);	//The input file from d2l has 11344 words	
+		table = new HashTable(TABLE_SIZE);	//The input file from d2l has 11344 words	
 		//Parse the input text file and add entries into a hash table
 		//table.PrintHashTable();
 		//System.out.println();
@@ -56,7 +57,7 @@ public class Assign5 {
 			pw = new PrintWriter(args[1]);
 			//table.PrintHashTable(pw);
 			//System.out.println(INPUT_NUM);
-			table.MeasureHashFunc(pw, scanner,INPUT_NUM);
+			table.MeasureHashFunc(pw, scanner,INPUT_SIZE);
 			pw.close();
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -64,7 +65,7 @@ public class Assign5 {
 			System.exit(-1);
 		}
 		
-		System.out.println("Program successfully completed. Quitting...");
+		System.out.println("Program successfully completed. Hash measurements printed to " + args[1]+ ". Quitting...");
 	}
 
 }
