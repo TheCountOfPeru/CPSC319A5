@@ -102,7 +102,7 @@ public class HashTable {
 		//Print out the remaining calculations...
 		pw.println("Average number of reads per record = " + (double)total_chain/num_records);
 		pw.println("Load factor = " + num_records + "/"+getSize() +" = "+ loadfactor+"%");
-		pw.println("Hash efficiency = "+ (double)getSize()/total_chain*100+"%");
+		pw.println("Hash efficiency = "+ loadfactor/(total_chain/num_records)+"%");
 		pw.println("The longest chain found = " + max_chain);
 	}
 	/**

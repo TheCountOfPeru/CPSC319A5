@@ -1,4 +1,0 @@
-Average number of reads per record = 2.380641748942172
-Load factor = 11344/16217 = 69.95128568785842%
-Hash efficiency = 60.049618603273345%
-The longest chain found = 83
